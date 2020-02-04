@@ -1,5 +1,6 @@
 package fr.openium.pam;
 
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +33,9 @@ class ChuckNorrisAdapter extends RecyclerView.Adapter<ChuckNorrisAdapter.ChuckNo
 
     @Override
     public void onBindViewHolder(@NonNull ChuckNorrisViewHolder holder, int position) {
-        holder.textView.setText(facts.get(position).fact);
+        //Required to display correctly the text as the api is not sending the content as json but as text/html
+        String text = Html.fromHtml(facts.get(position).fact).toString();
+        holder.textView.setText(text);
     }
 
     @Override
